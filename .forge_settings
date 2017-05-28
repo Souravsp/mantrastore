@@ -1,0 +1,3 @@
+isProvider = true
+contractType = PACT
+isConsumer = true

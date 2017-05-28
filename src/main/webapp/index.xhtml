@@ -1,0 +1,46 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h4="http://java.sun.com/jsp/jstl/core"
+                template="template.xhtml">
+
+
+    <ui:define name="content">
+        <f:metadata>
+            <f:viewParam name="order" value="#{productsBean.order}"/>
+        </f:metadata>
+
+        <h:form>
+            <h:inputText value="#{productsBean.filter}">
+                <f:ajax event="keyup" render="productTable"/>
+            </h:inputText>
+            <br/><br/>
+            <h:dataTable id="productTable" value="#{productsBean.products}" var="product" bgcolor="green">
+                <h:column>
+                    <f:facet name="header">Image</f:facet>
+                    <h:graphicImage library="images" name="#{product.id}.jpg" width="50"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Name</f:facet>
+                        <h:link value="#{product.name}" outcome="details.xhtml">
+                            <f:param name="pid" value="#{product.id}"/>
+                        </h:link>
+
+                </h:column>
+                <h:column>
+                    <!--<f:facet name="header"><h:link value="Price" outcome="index.xhtml?order=#{!productsBean.order}"/></f:facet>-->
+                    <f:facet name="header">
+                        <h:link value="Price">
+                            <f:param name="order" value="#{!productsBean.order}"/>
+                        </h:link>
+                    </f:facet>
+                    #{product.price}
+                </h:column>
+                <h:column>
+                <h:commandButton value="Add" action="#{basket.addProduct(product)}"/>
+            </h:column>
+            </h:dataTable>
+
+        </h:form>
+    </ui:define>
+
+</ui:composition>

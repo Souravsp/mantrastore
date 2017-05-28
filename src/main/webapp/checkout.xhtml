@@ -1,0 +1,16 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h4="http://java.sun.com/jsp/jstl/core"
+                template="template.xhtml">
+
+
+    <ui:define name="content">
+        <h:form>
+            Name:  <h:inputText value="#{basket.customer.name}" id="name_field"/> <h:message for="name_field"/><br/>
+            Email: <h:inputText value="#{basket.customer.email}" id="email_field"/> <h:message for="email_field"/>
+
+            <h:commandButton value="Checkout" action="#{basket.checkout}" />
+        </h:form>
+    </ui:define>
+
+</ui:composition>
